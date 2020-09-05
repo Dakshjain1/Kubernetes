@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webserver
+  labels:
+    prod: web_env
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      prod: web_env
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        prod: web_env
+    spec:
+      containers:
+             
+      - image: dakshjain09/test:latest
+        name: website
+        ports:
+        - containerPort: 80
+          name: website
